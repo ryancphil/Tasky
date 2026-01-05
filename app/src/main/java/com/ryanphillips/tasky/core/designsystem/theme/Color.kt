@@ -2,8 +2,9 @@ package com.ryanphillips.tasky.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
+val black = Color(0xFF16161C)
+val white = Color(0xFFFFFFFF)
+val grey = Color(0xFF1B1B20)
 val Pink80 = Color(0xFFEFB8C8)
 
 val Purple40 = Color(0xFF6650a4)
