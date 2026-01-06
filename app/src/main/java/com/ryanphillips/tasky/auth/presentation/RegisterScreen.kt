@@ -11,24 +11,31 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ryanphillips.tasky.R
 import com.ryanphillips.tasky.core.designsystem.component.TaskyTextField
 import com.ryanphillips.tasky.core.designsystem.theme.CheckmarkIcon
+import com.ryanphillips.tasky.core.designsystem.theme.Inter
 import com.ryanphillips.tasky.core.designsystem.theme.TaskyTheme
 
 // TODO: Implement Register screen according to the mockup.
 @Composable
-fun RegisterScreenRoot(
-//    viewModel: RegisterViewModel = hiltViewModel()
+fun RegisterScreenRoot( //    viewModel: RegisterViewModel = hiltViewModel()
 ) {
     RegisterScreen(
         state = RegisterState()
@@ -50,7 +57,10 @@ private fun RegisterScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                modifier = Modifier.padding(top = 40.dp, bottom = 40.dp),
+                modifier = Modifier.padding(
+                    top = 40.dp,
+                    bottom = 40.dp
+                ),
                 text = stringResource(R.string.create_your_account),
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.surface
@@ -94,18 +104,57 @@ private fun RegisterScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-                    onClick = {}
+                    onClick = {
+                        // TODO: Implement
+                    }
                 ) {
                     Text(text = stringResource(R.string.get_started))
                 }
-                // TODO: Modify so that "Log in" text is clickable and navigates to Login screen.
-                Text(
-                    text = stringResource(R.string.already_have_an_account_log_in),
-                    style = MaterialTheme.typography.labelSmall
+                AlreadyHaveAccountLogIn(
+                    onClick = {
+                        // TODO: Implement
+                    }
                 )
             }
         }
     }
+}
+
+@Composable
+private fun AlreadyHaveAccountLogIn(
+    onClick: () -> Unit = {}
+) {
+    val annotatedString = buildAnnotatedString {
+        withStyle(
+            style = SpanStyle(
+                fontFamily = Inter,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        ) {
+            append(stringResource(R.string.already_have_an_account) + " ")
+            withLink(
+                LinkAnnotation.Clickable(
+                    tag = "register_login",
+                    styles = TextLinkStyles(
+                        style = SpanStyle(
+                            fontFamily = Inter,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 14.sp,
+                            color = MaterialTheme.colorScheme.scrim
+                        )
+                    ),
+                    linkInteractionListener = {
+                        onClick()
+                    })
+            ) {
+                append(stringResource(R.string.log_in))
+            }
+        }
+    }
+    Text(
+        text = annotatedString,
+        style = MaterialTheme.typography.labelMedium
+    )
 }
 
 @Preview(showBackground = true)
