@@ -17,10 +17,12 @@ private val LightColorScheme = lightColorScheme(
     background = Black,
     onBackground = White,
     surface = White,
+    surfaceVariant = OffWhite,
     onSurface = Grey1,
     onSurfaceVariant = Grey3,
     error = Red1,
-    outline = GreyBlue
+    outline = GreyBlue,
+    scrim = Purple1
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -30,10 +32,12 @@ private val DarkColorScheme = darkColorScheme(
     background = Black,
     onBackground = White,
     surface = Black2,
+    surfaceVariant = Black3,
     onSurface = OffWhite,
     onSurfaceVariant = Grey4,
     error = Red2,
     outline = Grey2,
+    scrim = Purple2
 )
 
 @Composable
