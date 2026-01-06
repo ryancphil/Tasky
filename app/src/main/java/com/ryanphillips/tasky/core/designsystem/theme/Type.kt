@@ -131,20 +131,20 @@ val Typography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp
     ),
-//    labelLarge = TextStyle(
-//        fontFamily = Inter,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 14.sp,
-//        lineHeight = 20.sp,
-//        letterSpacing = 0.1.sp
-//    ),
-//    labelMedium = TextStyle(
-//        fontFamily = Inter,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 12.sp,
-//        lineHeight = 16.sp,
-//        letterSpacing = 0.5.sp
-//    ),
+    labelLarge = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.sp
+    ),
+    labelMedium = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.0.sp
+    ),
     labelSmall = TextStyle(
         fontFamily = Inter,
         fontWeight = FontWeight.SemiBold,
