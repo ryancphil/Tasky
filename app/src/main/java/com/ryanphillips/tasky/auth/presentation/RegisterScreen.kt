@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -16,9 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryanphillips.tasky.R
+import com.ryanphillips.tasky.core.designsystem.component.TaskyTextField
+import com.ryanphillips.tasky.core.designsystem.theme.CheckmarkIcon
 import com.ryanphillips.tasky.core.designsystem.theme.TaskyTheme
 
 // TODO: Implement Register screen according to the mockup.
@@ -35,56 +39,71 @@ fun RegisterScreenRoot(
 private fun RegisterScreen(
     state: RegisterState
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            modifier = Modifier.padding(top = 40.dp, bottom = 40.dp),
-            text = stringResource(R.string.create_your_account),
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.surface
-        )
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 24.dp,
-                        topEnd = 24.dp
-                    )
-                )
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(16.dp),
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // TODO: Make design system component for Primary TextField
-            TextField(
-                state = state.name
+            Text(
+                modifier = Modifier.padding(top = 40.dp, bottom = 40.dp),
+                text = stringResource(R.string.create_your_account),
+                style = MaterialTheme.typography.headlineLarge,
+                color = MaterialTheme.colorScheme.surface
             )
-            TextField(
-                state = state.email
-            )
-            TextField(
-                state = state.password
-            )
-            // TODO: Make design system component for Primary Button
-            Button(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxHeight()
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 24.dp,
+                            topEnd = 24.dp
+                        )
+                    )
+                    .background(MaterialTheme.colorScheme.surface)
                     .padding(16.dp),
-                onClick = {}
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = stringResource(R.string.get_started))
+                TaskyTextField(
+                    modifier = Modifier.padding(8.dp),
+                    state = state.name,
+                    hint = "Name",
+                    trailingIcon = if (state.name.text.isNotEmpty()) CheckmarkIcon else null
+                )
+                TaskyTextField(
+                    modifier = Modifier.padding(8.dp),
+                    state = state.email,
+                    hint = "Email",
+                    keyboardType = KeyboardType.Email,
+                    trailingIcon = if (state.email.text.isNotEmpty()) CheckmarkIcon else null
+                )
+                // TODO: Create a SecureTaskyTextField for password to replace this.
+                TaskyTextField(
+                    modifier = Modifier.padding(8.dp),
+                    state = state.password,
+                    keyboardType = KeyboardType.Password,
+                    hint = "Password"
+                )
+                // TODO: Make design system component for Primary Button
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    onClick = {}
+                ) {
+                    Text(text = stringResource(R.string.get_started))
+                }
+                // TODO: Modify so that "Log in" text is clickable and navigates to Login screen.
+                Text(
+                    text = stringResource(R.string.already_have_an_account_log_in),
+                    style = MaterialTheme.typography.labelSmall
+                )
             }
-            // TODO: Modify so that "Log in" text is clickable and navigates to Login screen.
-            Text(
-                text = stringResource(R.string.already_have_an_account_log_in),
-                style = MaterialTheme.typography.labelSmall
-            )
         }
     }
 }
