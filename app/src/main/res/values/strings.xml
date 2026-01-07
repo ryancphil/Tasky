@@ -4,4 +4,10 @@
     <string name="log_in">LOG IN</string>
     <string name="get_started">GET STARTED</string>
     <string name="create_your_account">Create your account</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_toggle_password_visibility">Toggle password visibility</string>
 </resources>

@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ryanphillips.tasky.R
+import com.ryanphillips.tasky.core.designsystem.component.TaskyPasswordTextField
 import com.ryanphillips.tasky.core.designsystem.component.TaskyTextField
 import com.ryanphillips.tasky.core.designsystem.theme.CheckmarkIcon
 import com.ryanphillips.tasky.core.designsystem.theme.Inter
@@ -92,23 +93,26 @@ private fun RegisterScreen(
                     keyboardType = KeyboardType.Email,
                     trailingIcon = if (state.email.text.isNotEmpty()) CheckmarkIcon else null
                 )
-                // TODO: Create a SecureTaskyTextField for password to replace this.
-                TaskyTextField(
+                TaskyPasswordTextField(
                     modifier = Modifier.padding(8.dp),
                     state = state.password,
-                    keyboardType = KeyboardType.Password,
-                    hint = "Password"
+                    showPassword = false,
+                    onToggleVisibility = {}
                 )
                 // TODO: Make design system component for Primary Button
                 Button(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 8.dp, vertical = 16.dp),
                     onClick = {
                         // TODO: Implement
                     }
                 ) {
-                    Text(text = stringResource(R.string.get_started))
+                    Text(
+                        modifier = Modifier.padding(16.dp),
+                        text = stringResource(R.string.get_started),
+                        style = MaterialTheme.typography.labelLarge
+                    )
                 }
                 AlreadyHaveAccountLogIn(
                     onClick = {
